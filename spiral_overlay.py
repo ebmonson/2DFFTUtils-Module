@@ -6,51 +6,51 @@
     USAGE:              python spiral_overlay.py <filename>
     
     INPUTS:             Filename.
-                        FITS filename can be passed as a command line argument,
-                        but the program will prompt for it if it isn't.
+    FITS filename can be passed as a command line argument,
+    but the program will prompt for it if it isn't.
     
     OUTPUT:             Interactive plot in MatPlotLib window.
     
     NOTES:              Uses pylab (including matplotlib and numpy) and astropy.
-                        All necessary libraries included in Ureka package.
+    All necessary libraries included in Ureka package.
     
-                        Eqns used:
+    Eqns used:
     
-                            r = ae^(b*theta)
+    r = ae^(b*theta)
     
-                            x = r*cos(theta)
-                            y = r*sin(theta)
+    x = r*cos(theta)
+    y = r*sin(theta)
     
-                            tan(phi) = b
-                            phi = pitch angle
+    tan(phi) = b
+    phi = pitch angle
     
-                        
-                        It is recommended that you use cropped images with this program. Image
-                        plotting slows down dramatically as image size increases.
-                    
-                        Rotation angle and pitch can be changed while the program is running
-                        using the sliders below the plot. For strongly barred galaxies, the minimum 
-                        polar angle can be set with the slider marked minimum theta. The reset button 
-                        initializes the slider to default values (0.0 for rotation, 20.0 for pitch, and 
-                        pi for min. theta).
-                        
-                        Scale can be swapped between logarithmic and linear modes with the radio
-                        buttons on the left side of the plot. There are two colormaps for the logarithmic
-                        scale: Seismic (diverging) and Greyscale (sequential). Defaults to linear scale,
-                        which you may want to change if you're dealing with faint real images.
-                        
-                        Chirality (corresponding to the sign of the pitch angle: CCW = -, CW = +)
-                        can be changed with the second set of radio buttons on the right side of
-                        the plot. Defaults to positive chirality.
-                        
-                        Arm number (corresponding to mode) can be changed with the radio buttons
-                        on the right side of the plot. Defaults to 2 arms.
-                        
-                        Default values can be changed in the block of constants below.
-                        
-                        The overlay can be saved as a .png (without all the sliders and buttons) by pressing
-                        the save button below the sliders.
-'''
+    
+    It is recommended that you use cropped images with this program. Image
+    plotting slows down dramatically as image size increases.
+    
+    Rotation angle and pitch can be changed while the program is running
+    using the sliders below the plot. For strongly barred galaxies, the minimum
+    polar angle can be set with the slider marked minimum theta. The reset button
+    initializes the slider to default values (0.0 for rotation, 20.0 for pitch, and
+    pi for min. theta).
+    
+    Scale can be swapped between logarithmic and linear modes with the radio
+    buttons on the left side of the plot. There are two colormaps for the logarithmic
+    scale: Seismic (diverging) and Greyscale (sequential). Defaults to linear scale,
+    which you may want to change if you're dealing with faint real images.
+    
+    Chirality (corresponding to the sign of the pitch angle: CCW = -, CW = +)
+    can be changed with the second set of radio buttons on the right side of
+    the plot. Defaults to positive chirality.
+    
+    Arm number (corresponding to mode) can be changed with the radio buttons
+    on the right side of the plot. Defaults to 2 arms.
+    
+    Default values can be changed in the block of constants below.
+    
+    The overlay can be saved as a .png (without all the sliders and buttons) by pressing
+    the save button below the sliders.
+    '''
 
 #-----------------------------code begins----------------------------
 #!/usr/bin/python
@@ -75,8 +75,8 @@ class Spiral():
     '''
         Spiral
         A class interface to hold parameters related to the spiral overlay.
-    '''
-
+        '''
+    
     def __init__(self, num_arms, pitch, chirality, rotation, theta_min, color):
         self.num_arms = num_arms
         self.pitch = pitch
@@ -86,12 +86,12 @@ class Spiral():
         self.color = color
         return
     #end definition
-
+    
     def setNumArms(self, num_arms):
         self.num_arms = num_arms
         return
     #end definition
-
+    
     def setPitch(self, pitch):
         self.pitch = pitch
         return
@@ -101,44 +101,44 @@ class Spiral():
         self.chirality = chirality
         return
     #end definition
-
+    
     def setRotation(self, rotation):
         self.rotation = rotation
         return
     #end definition
-
+    
     def setTheta(self, theta_min):
         self.theta_min = theta_min
         return
     #end definition
-
+    
     def setColor(self, color):
         self.color = color
         return
-    #end definition
+#end definition
 
 #end class definition
 
 class Image():
     '''
         Image
-        A class interface to hold data from and related to the galaxy image being 
+        A class interface to hold data from and related to the galaxy image being
         overlaid.
-    '''
+        '''
     def __init__(self, name):
         self.name = name
         return
     #end definition
-
+    
     def setData(self, data):
         self.data = data
         return
     #end definition
-
+    
     def setColorscale(self, colorscale):
         self.colorscale = colorscale
         return
-    #end definition
+#end definition
 
 #end class definition
 
@@ -153,7 +153,7 @@ if len(sys.argv) != 1:
         print("Could not parse command line argument")
         print(__doc__)
         sys.exit()
-    #end if
+#end if
 
 else:
     print "Available images in this directory: "
@@ -171,7 +171,8 @@ except IOError:
     sys.exit()
 
 #-----------------------------Setup for plot-----------------------------
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(num=None, figsize=(13,9), dpi=80, edgecolor='k')
+fig.canvas.set_window_title("Spiral Overlay")
 plt.subplots_adjust(left= 0.15, bottom= 0.20) #set placement of plot
 plt.tick_params(axis= 'both', which= 'both', bottom= 'off', top= 'off', left= 'off', right= 'off', labelbottom= 'off', labelleft= 'off')
 plt.axis([0, int(len(gal_image.data)), 0, int(len(gal_image.data))]) #initial axis bounds set by this array
@@ -203,7 +204,7 @@ def ImagePlot(image):
         remap = LogNorm()
         remap.autoscale(image.data)
         ax.imshow(image.data, cmap='seismic', norm=remap, origin='lower')
-    #end if
+#end if
 #end definition
 
 #-----------------------------Spiral arms-----------------------------
@@ -253,7 +254,7 @@ def SpiralArms(spiral, image):
         all_x = np.append(all_x, x)
         all_y = np.append(all_y, y)
     #end loop
-
+    
     return all_x, all_y
 
 #end definition
@@ -382,17 +383,17 @@ def ScaleChange(label):
     #end if
     ax.cla()
 
-    ImagePlot(gal_image)
+ImagePlot(gal_image)
     x,y = SpiralArms(overlay, gal_image)
     overlay.lines, = ax.plot(x, y, '.', ms = 5.0)
     if overlay.color == 'red':
         plt.setp(overlay.lines, color = 'red')
-    elif overlay.color == 'black':
-        plt.setp(overlay.lines, color = 'black')
+elif overlay.color == 'black':
+    plt.setp(overlay.lines, color = 'black')
     elif overlay.color == 'white':
         plt.setp(overlay.lines, color = 'white')
-    else:
-        plt.setp(overlay.lines, color = 'blue')
+else:
+    plt.setp(overlay.lines, color = 'blue')
     #end if
     fig.canvas.draw_idle()
 #end definition
@@ -418,7 +419,7 @@ def ChirChange(label):
     overlay.lines.set_xdata(x)
     overlay.lines.set_ydata(y)
 
-    fig.canvas.draw_idle()
+fig.canvas.draw_idle()
 #end definition
 
 chir_radio.on_clicked(ChirChange)
@@ -451,7 +452,7 @@ fig.text(0.10,0.56,"Line Color", fontsize='12',ha='center')
 # ColorChange
 #   Allow the user to change the color of overlaid arms on the fly
 def ColorChange(label):
-
+    
     overlay.setColor(label)
     
     if overlay.color == 'red':

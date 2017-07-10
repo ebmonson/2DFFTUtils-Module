@@ -265,7 +265,7 @@ def crop(img, center_x, center_y, radius, append="_crop"):
         # These indices look backwards, but that's how the IRAF convention works.
         iraf.imcopy(img +"["+str(lower_x)+":"+str(upper_x)+","+str(lower_y)+":"+str(upper_y)+"]",base + append + extension,Stdout="/dev/null")
     except iraf.IrafError as e:
-        print "IRAF Error: " + e
+        print("IRAF Error: " + str(e))
     #end try
 #end definition
 
@@ -297,7 +297,7 @@ def convertText(imgs):
         try:
             iraf.wtextimage(filename,base+".txt",header='no',pixels='yes')
         except iraf.IrafError as e:
-            print("IRAF Error: " + e)
+            print("IRAF Error: " + str(e))
     #end try
 #end definition
 
