@@ -7,7 +7,7 @@ preparing images for 2DFFT and dealing with 2DFFT data interactively or in scrip
 
 The overlay application is implemented in a separate script file, ``spiral_overlay.py``.
 
-Scripts for plotting pitch angle as a function of radius from 2DFFT output are not included in ``_2DFFTUtils.py``. Scripts by Jazmin Berlanga Medina are available in the ``plots/`` section of ``2dfft_utils``.
+Scripts for plotting pitch angle as a function of radius from 2DFFT output are not included in ``_2DFFTUtils.py``. Scripts by Jazmin Berlanga Medina are available in the ``plots/`` section of the main `2dfft_utils repository <https://github.com/AGES-UARK/2dfft_utils>`_.
 
 Scripts for deprojecting galaxy images or converting simulation data from postscript format to FITS are also not included in this module.
 
