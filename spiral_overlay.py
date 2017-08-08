@@ -383,17 +383,17 @@ def ScaleChange(label):
     #end if
     ax.cla()
 
-ImagePlot(gal_image)
+    ImagePlot(gal_image)
     x,y = SpiralArms(overlay, gal_image)
     overlay.lines, = ax.plot(x, y, '.', ms = 5.0)
     if overlay.color == 'red':
         plt.setp(overlay.lines, color = 'red')
-elif overlay.color == 'black':
-    plt.setp(overlay.lines, color = 'black')
+    elif overlay.color == 'black':
+        plt.setp(overlay.lines, color = 'black')
     elif overlay.color == 'white':
         plt.setp(overlay.lines, color = 'white')
-else:
-    plt.setp(overlay.lines, color = 'blue')
+    else:
+        plt.setp(overlay.lines, color = 'blue')
     #end if
     fig.canvas.draw_idle()
 #end definition
@@ -419,7 +419,7 @@ def ChirChange(label):
     overlay.lines.set_xdata(x)
     overlay.lines.set_ydata(y)
 
-fig.canvas.draw_idle()
+    fig.canvas.draw_idle()
 #end definition
 
 chir_radio.on_clicked(ChirChange)
