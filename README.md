@@ -1,20 +1,24 @@
-*****************
-2DFFTUtils Module
-*****************
+
+# 2DFFTUtils Module
+
 
 The 2DFFTUtils Python module (``_2DFFTUtils.py``) implements most of the 2DFFT utilities in one place, to make
 preparing images for 2DFFT and dealing with 2DFFT data interactively or in scripts even easier.
 
 The overlay application is implemented in a separate script file, ``spiral_overlay.py``.
 
-Scripts for plotting pitch angle as a function of radius from 2DFFT output are not included in ``_2DFFTUtils.py``. Scripts by Jazmin Berlanga Medina are available in the ``plots/`` section of the main `2dfft_utils repository <https://github.com/AGES-UARK/2dfft_utils>`_.
+Scripts for plotting pitch angle as a function of radius from 2DFFT output are not included in ``_2DFFTUtils.py``. Scripts by Jazmin Berlanga Medina are available in the ``plots/`` section of the main [2dfft_utils repository](https://github.com/AGES-UARK/2dfft_utils).
 
 Scripts for deprojecting galaxy images or converting simulation data from postscript format to FITS are also not included in this module.
 
 More detailed documentation for the functions included in the 2DFFTUtils module is available using Python's builtin ``help`` command.
 
-Included Functions
-################
+>  *NOTE*:
+>  
+>  This code is not actively maintained or supported, and was last updated in 2017. However, if you find this package directly useful for your work, you may cite it
+>  using its [Astrophysics Source Code Library](https://ascl.net) identifier [ascl.net/2211.013](https://ascl.net/2211.013).
+
+## Included Functions
 
 Image Preparation:
   - ``getCenter()``: find the centers of the objects in a list of galaxy images.
